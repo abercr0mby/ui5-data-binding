@@ -1,0 +1,6 @@
+{
+  "projectType": [
+    "sap.watt.uitools.ide.fiori",
+    "sap.watt.uitools.ide.web"
+  ]
+}
