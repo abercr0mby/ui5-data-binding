@@ -17,6 +17,10 @@
 		// Attach an anonymous function to the 'init' event
 		sap.ui.getCore().attachInit(function () {
 			
+			var oProductModel = new sap.ui.model.json.JSONModel();
+			oProductModel.loadData("./model/Products.json");
+			sap.ui.getCore().setModel(oProductModel, "products");			
+			
 			// Create a JSON model from an object literal
 			var oModel = new sap.ui.model.json.JSONModel({
 				firstName: "Zarry",
@@ -46,9 +50,14 @@
     		// Assign the model object to the SAPUI5 core using the name "i18n"
     		sap.ui.getCore().setModel(oResourceModel, "i18n");			
 			
-			// Display the XML view called "App"
-			new sap.ui.core.mvc.XMLView({ viewName : "sap.ui.demo.db.view.App" })
-				.placeAt("content");			
+			// Create view
+			var oView = new sap.ui.core.mvc.XMLView({ viewName : "sap.ui.demo.db.view.App" });
+ 
+			// Register the view with the message manager
+			sap.ui.getCore().getMessageManager().registerObject(oView, true);
+ 
+			// Insert the view into the DOM
+			oView.placeAt("content");			
 		});
 	</script>
   <body class="sapUiBody" id="content">
